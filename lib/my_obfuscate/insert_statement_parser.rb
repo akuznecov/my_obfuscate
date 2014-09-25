@@ -9,7 +9,7 @@ class MyObfuscate
           if config[table_name]
             output_io.puts obfuscator.obfuscate_bulk_insert_line(line, table_name, columns)
           else
-            $stderr.puts "Deprecated: #{table_name} was not specified in the config.  A future release will cause this to be an error.  Please specify the table definition or set it to :keep."
+            $stderr.puts "Deprecated: #{table_name} was not specified in the config.  A future release will cause this to be an error.  Please specify the table definition or set it to :keep." unless obfuscator.ignore_depricated_warnings?
             output_io.write line
           end
         else

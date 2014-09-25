@@ -6,7 +6,7 @@ require 'walker_method'
 # Class for obfuscating MySQL dumps. This can parse mysqldump outputs when using the -c option, which includes
 # column names in the insert statements.
 class MyObfuscate
-  attr_accessor :config, :globally_kept_columns, :fail_on_unspecified_columns, :database_type
+  attr_accessor :config, :globally_kept_columns, :fail_on_unspecified_columns, :database_type, :ignore_depricated_warnings
 
   NUMBER_CHARS = "1234567890"
   USERNAME_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_" + NUMBER_CHARS
@@ -16,6 +16,10 @@ class MyObfuscate
   # performed.  See the README.rdoc file for more information.
   def initialize(configuration = {})
     @config = configuration
+  end
+
+  def ignore_depricated_warnings?
+    @ignore_depricated_warnings
   end
 
   def fail_on_unspecified_columns?
